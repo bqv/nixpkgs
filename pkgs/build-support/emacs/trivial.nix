@@ -10,7 +10,7 @@ import ./generic.nix envargs ({
   buildPhase = ''
     runHook preBuild
 
-    emacs -L . --batch -f batch-byte-compile *.el
+    emacs -L . --batch -f batch-native-compile *.el
 
     runHook postBuild
   '';
@@ -20,7 +20,7 @@ import ./generic.nix envargs ({
 
     LISPDIR=$out/share/emacs/site-lisp
     install -d $LISPDIR
-    install *.el *.elc $LISPDIR
+    install *.el *.elc eln-* $LISPDIR
 
     runHook postInstall
   '';
